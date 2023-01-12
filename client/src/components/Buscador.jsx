@@ -1,18 +1,9 @@
 import { Fragment, useState } from 'react'
 import { Combobox, Dialog, Transition } from '@headlessui/react'
 import Button from "./Button";
+import {useSelector} from "react-redux";
 
 
-const articles = [
-    {id: 1, article: "Artículo 19°", url: "#" },
-    {id: 2, article: "Artículo 19°", url: "#" },
-    {id: 3, article: "Artículo 19°", url: "#" },
-    {id: 4, article: "Artículo 19°", url: "#" },
-    {id: 5, article: "Artículo 19°", url: "#" },
-    {id: 6, article: "Artículo 19°", url: "#" },
-    {id: 7, article: "Artículo 19°", url: "#" },
-    {id: 8, article: "Artículo 19°", url: "#" }
-]
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -20,8 +11,32 @@ function classNames(...classes) {
 
 export default function Buscador() {
     const [query, setQuery] = useState('')
-
     const [open, setOpen] = useState(false)
+
+    const datos = useSelector((state) => state.codigos)
+    console.log("Estos son los datos en el buscador", datos.value)
+    const dataSearch = (arr) => {
+        if(!arr) return
+        let nuevoArr = []
+        let idNew = 0
+        arr.map((el) => {
+            el.datos.map((ele) => {
+                ele.articulos.map((art) => {
+                    nuevoArr.push({
+                    id: art.articulo + idNew,
+                        article: `artículo ${art.articulo}°`,
+                        url: `/article/${el.codigo === "Código Penal para el Estado de Hidalgo" ? "penal" : "civil" }/${art.articulo}`,
+                        materia: `${el.codigo === "Código Penal para el Estado de Hidalgo" ? "Código Penal para el Estado de Hidalgo" : "Código Civil para el Estado de Hidalgo"}`
+                    })
+                    idNew++
+                })
+            })
+        })
+        return nuevoArr
+    }
+
+    const articles = dataSearch(datos.value)
+    console.log(articles)
 
     const filteredPeople =
         query === ''
@@ -85,7 +100,7 @@ export default function Buscador() {
                                                     )
                                                 }
                                             >
-                                                {article.article}
+                                                {article.article}   <p>{article.materia}</p>
                                             </Combobox.Option>
                                         ))}
                                     </Combobox.Options>
