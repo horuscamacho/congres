@@ -14,7 +14,6 @@ export default function Buscador() {
     const [open, setOpen] = useState(false)
 
     const datos = useSelector((state) => state.codigos)
-    console.log("Estos son los datos en el buscador", datos.value)
     const dataSearch = (arr) => {
         if(!arr) return
         let nuevoArr = []
@@ -36,7 +35,7 @@ export default function Buscador() {
     }
 
     const articles = dataSearch(datos.value)
-    console.log(articles)
+
 
     const filteredPeople =
         query === ''
