@@ -8,6 +8,7 @@ import {useNavigate} from "react-router-dom";
 
 const getArticles = (arr) => {
     const data = []
+    if(!arr) return
     arr.map(el => {
         data.push({
             id: el.id,
