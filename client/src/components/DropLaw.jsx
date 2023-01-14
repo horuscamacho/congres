@@ -2,15 +2,10 @@ import {Fragment,useEffect, useState} from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
 import {useDispatch, useSelector} from "react-redux";
-import {getData} from "../features/codes/codeSelectedSlice";
+import {getArticulos} from "../features/articulos/articulosSlice";
 
-const people = [
-    { id: 1, name: 'Constitución Política del Estado de Hidalgo' },
-    { id: 2, name: 'Código Civil para el Estado de Hidalgo' },
-    { id: 3, name: 'Código de Procedimientos Civiles Para el Estado de Hidalgo' },
-    { id: 4, name: '-' },
 
-]
+
 
 
 
@@ -22,40 +17,33 @@ function classNames(...classes) {
 export default function Example() {
     const dispatch = useDispatch()
     const allCodes = useSelector((state) => state.codigos)
-    const [selected, setSelected] = useState(people[3])
+    const [selected, setSelected] = useState({id: "1", name: "-"})
 
-    const functionRan = (id) => {
-        if(id === 1) {
-            dispatch(getData("codigopenal"))
-        }
-        if(id === 2) {
-            dispatch(getData("codigocivil"))
-        }
-    }
 
-    const getMenu = (arr) => {
-        if(arr){
-            const data = []
-            let count = 1
-            console.log(arr)
-            arr.map(el => {
-                data.push({
-                    id: count,
-                    name: el.codigo
-                })
-                count = count +1
+
+
+
+
+    const elementsList = (arr) => {
+        if(!arr) return
+        const data = []
+        arr.map((el) => {
+            data.push({
+                id: el.id,
+                name: el.name
             })
-            return data
-        } else return
-
+        })
+        return data
     }
-    const list = allCodes ? getMenu(allCodes.value ? allCodes.value : null) : null
+
+    const list = allCodes ? elementsList(allCodes.value ? allCodes.value : null) : null
+
 
 
 
 
     useEffect(() => {
-        functionRan(selected.id)
+        dispatch(getArticulos(selected.id))
     }, [selected]);
 
 
@@ -70,7 +58,7 @@ export default function Example() {
                 <>
 
                     <div className="relative mt-1">
-                        <Listbox.Button className="relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-red-900 focus:outline-none focus:ring-1 focus:ring-red-900 sm:text-sm">
+                        <Listbox.Button className="relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-congresogold focus:outline-none focus:ring-1 focus:ring-congresogold sm:text-sm">
                             <span className="block truncate">{selected.name}</span>
                             <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                 <ChevronUpDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
@@ -90,7 +78,7 @@ export default function Example() {
                                         key={ele.id}
                                         className={({ active }) =>
                                             classNames(
-                                                active ? 'text-white bg-red-900' : 'text-gray-900',
+                                                active ? 'text-white bg-congresogrisfuerte' : 'text-gray-900',
                                                 'relative cursor-default select-none py-2 pl-3 pr-9'
                                             )
                                         }

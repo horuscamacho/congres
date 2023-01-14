@@ -4,7 +4,13 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'congresogold': '#d4a000',
+        'congresogrisfuerte': '#5c5c5c',
+        'congresgrissoft': '#e6e6e6'
+      }
+    },
   },
   plugins: [require('@tailwindcss/forms'), require("@tailwindcss/typography")],
 }

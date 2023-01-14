@@ -32,7 +32,6 @@ export const codeSelectedSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder.addCase(getData.fulfilled, (state, action) => {
-            console.log(action.payload)
             state.value = action.payload
         })
     }
