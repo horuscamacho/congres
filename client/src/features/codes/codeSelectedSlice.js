@@ -6,7 +6,6 @@ export const getData = createAsyncThunk(
     async (data) => {
         try {
             const response = await axios.get(`https://gorgeous-tan-earmuffs.cyclic.app/${data}`, data)
-            console.log(data)
             return response.data
         }catch (e) {
             console.log(e.message)
