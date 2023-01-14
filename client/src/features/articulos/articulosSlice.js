@@ -6,7 +6,7 @@ export const getArticulos = createAsyncThunk(
     async (data) => {
         if(parseInt(data, 10) === 1) return
         try {
-            const response = await axios.get(`http://localhost:3001/codigos/${data}`)
+            const response = await axios.get(`https://gorgeous-tan-earmuffs.cyclic.app/${data}`)
             return response.data
         } catch (e) {
             return e.message

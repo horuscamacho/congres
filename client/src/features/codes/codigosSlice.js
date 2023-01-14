@@ -5,7 +5,7 @@ export const getCodigos = createAsyncThunk(
     'codigos/getCodigos',
     async (data) => {
     try{
-        const response = await axios.get('http://localhost:3001/allcodes')
+        const response = await axios.get('https://gorgeous-tan-earmuffs.cyclic.app/allcodes')
         return response.data
     } catch (e) {
         return e.message

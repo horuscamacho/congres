@@ -5,7 +5,7 @@ export const getArticulo = createAsyncThunk(
     'articulo/getArticulo',
     async (data) => {
         try{
-            const response = await axios.get(`http://localhost:3001/articulo/${data}`)
+            const response = await axios.get(`https://gorgeous-tan-earmuffs.cyclic.app/${data}`)
             return response.data
         } catch (e) {
             return e.message
