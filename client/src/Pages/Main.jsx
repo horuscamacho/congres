@@ -9,7 +9,7 @@ function Main(props) {
     return (
         <div>
             <NavBar />
-            <Buscador />
+            {/* <Buscador /> */}
             <div className="  md:px-48 md:py-12 ">
                 <DropLaw />
             </div>

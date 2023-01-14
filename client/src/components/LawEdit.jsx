@@ -1,38 +1,25 @@
 import {useDispatch, useSelector} from "react-redux";
-import {getArticle} from "../features/laws/articleSlice";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import Form from "./Form";
 import Button from "./Button";
+import Modal from "./ModalSeguridad";
+
 
 
 export default function LawEdit() {
     const dispatch = useDispatch()
-    const url = window.location.href
-    const urlSplit = url.split("/")
-    const article = urlSplit[urlSplit.length -1]
-    const codigo = urlSplit[urlSplit.length -2]
-    const dat = useSelector((state) => state.articleToEdit)
-    const [datos, setDatos] = useState(null);
+    const dat = useSelector((state) => state.articulo)
+    const articulo = dat.value ? dat.value[0] : null
     const [editable, setEditable] = useState(false);
 
 
-    useEffect(() => {
-        dispatch(getArticle({article, codigo}))
-    }, []);
-
-
-
-    useEffect(() => {
-        setDatos(dat)
-    },[dat])
-
-    console.log(datos)
 
 
     const handleOnClick = (e) => {
         e.preventDefault()
         editable === false ? setEditable(true) : setEditable(false)
     }
+
 
 
 
@@ -108,18 +95,16 @@ export default function LawEdit() {
             <div className="relative px-6 lg:px-8">
                 <div className="mx-auto max-w-prose text-lg">
                     <h1>
-                        <span className="block text-center text-lg font-semibold text-red-800">{datos && datos.value ? datos.value[0].libro  : null }</span>
-                        <span className="block text-center text-lg font-semibold text-red-800">Título {datos && datos.value ? datos.value[0].titulo  : null }</span>
-                        <span className="block text-center text-lg font-semibold text-red-800">{datos && datos.value ? datos.value[0].subtitulo  : null }</span>
-                        <span className="block text-center text-lg font-semibold text-red-800">Capítulo {datos && datos.value ? datos.value[0].capitulo  : null }</span>
+                        <span className="block text-center text-lg font-semibold text-black">Código { null }</span>
+                        <span className="block text-center text-lg font-semibold text-black">Última Modificación{ null }</span>
                         <span className="mt-2 block text-center text-3xl font-bold leading-8 tracking-tight text-gray-900 sm:text-4xl">
-              Artículo {datos && datos.value ? datos.value[0].articulo.articulo  : null }°
+              Artículo { articulo?.articulo }°
             </span>
                     </h1>
                     <p className="mt-8 text-xl leading-8 text-black">
-                        {datos && datos.value ? datos.value[0].articulo.texto : null }
+                        {articulo?.contenido }
                     </p>
-                    {editable === false ? <Button handleOnClick = {handleOnClick} /> : <Form handleOnClick = {handleOnClick} data = {datos} /> }
+                    {editable === false ? <Button handleOnClick = {handleOnClick} /> : <Form handleOnClick = {handleOnClick} articulo ={articulo} /> }
                 </div>
 
             </div>
