@@ -1,10 +1,34 @@
 import {Fragment, useEffect, useRef, useState} from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { UserIcon } from '@heroicons/react/24/outline'
+import axios from "axios";
+
+
 
 export default function ModalConfirmation(props) {
     const{title,text, openModal, setOpenModal} = props
     const [open, setOpen] = useState(openModal)
+
+
+    const createUsuario = async (e) => {
+        e.preventDefault()
+        try {
+            const nuevoUsuario = await axios.post('http://localhost:3001/crearusuario',
+                {usuario: "horus", contrasena: "123456", permisos: "completo", nombre: "Horus", apellido: "Camacho"})
+            setOpenModal(false)
+            return nuevoUsuario
+        } catch (e) {
+            return e
+        }
+    }
+
+
+    const handleSubmit = async (e) =>{
+        const data = await createUsuario(e)
+        setOpenModal(false)
+        console.log(data)
+        return data
+    }
 
     const cancelButtonRef = useRef(null)
 
@@ -60,22 +84,23 @@ export default function ModalConfirmation(props) {
                                     <button
                                         type="button"
                                         className="inline-flex w-full justify-center rounded-md border border-transparent bg-black px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-congresogold hover:text-black focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 sm:col-start-2 sm:text-sm"
-                                        onClick={() => setOpenModal(false)}
+                                        onClick={(e) => handleSubmit(e)}
                                     >
                                         Crear usuario
                                     </button>
                                     <button
-                                        type="button"
                                         className="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 sm:col-start-1 sm:mt-0 sm:text-sm"
                                         onClick={() => setOpenModal(false)}
 
                                     >
                                         Cancelar
                                     </button>
+
                                 </div>
                             </Dialog.Panel>
                         </Transition.Child>
                     </div>
+
                 </div>
             </Dialog>
         </Transition.Root>

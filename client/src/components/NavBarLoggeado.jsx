@@ -9,17 +9,15 @@ export default function NavBarLoggeado(props) {
 
     const handleOnclick = (e) =>{
         e.preventDefault()
-        console.log("Esta seteando el color")
         setAccion(e.target.value)
     }
 
-    console.log(accion)
 
     const classNoCurrent = "rounded-md px-3 py-2 text-sm font-medium bg-gray-900 text-white "
     const currentClass = "rounded-md px-3 py-2 bg-congresogold text-sm font-medium text-black hover:bg-gray-700 hover:text-white"
     const classNotCurrentMob = 'block w-full rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white'
     const classCurrentMob = 'block w-full rounded-md px-3 py-2 bg-congresogold text-base font-medium text-black hover:bg-gray-700 hover:text-white'
-    const options = [{id: "1", value : "usuario", texto: "Crear Usuario"}, {id: "2", value : "folios", texto: "Revisar Folios"}, {id: "3", value : "reportes", texto: "Reportes"} ]
+    const options = [{id: "1", value : "usuario", texto: "Crear Usuario"}, {id: "2", value : "folios", texto: "Revisar Folios"}, {id: "3", value : "reportes", texto: "Reportes"}, {id: "4", value: "uariosexistentes", texto: 'Usuarios'} ]
 
 
 

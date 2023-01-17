@@ -1,7 +1,7 @@
 import {createSlice ,createAsyncThunk} from "@reduxjs/toolkit";
 import axios from 'axios'
 
-const url = 'https://gorgeous-tan-earmuffs.cyclic.app/allcodes'
+//const url = 'https://gorgeous-tan-earmuffs.cyclic.app/allcodes'
 const local = 'http://localhost:3001'
 export const titulosNormas = createAsyncThunk(
     'titulos_normas/titulosNormas',

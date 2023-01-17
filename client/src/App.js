@@ -6,10 +6,9 @@ import Login from "./Pages/Login";
 import MainAdministrativo from "./Pages/MainAdministrativo";
 
 
-
-
-
 function App() {
+
+
     return (
     <div className="App">
         <BrowserRouter>
