@@ -1,11 +1,9 @@
-import {Fragment,useEffect, useState} from 'react'
+import {Fragment, useEffect, useState} from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
 import {useDispatch, useSelector} from "react-redux";
-import {getArticulos} from "../features/articulos/articulosSlice";
-
-
-
+import {traerArticulos} from "../features/articulos/traerArticulosSlice";
+import {setNormaSelected} from "../features/normas/normaActivaSlice"
 
 
 
@@ -13,52 +11,48 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-
-export default function Example() {
-    const dispatch = useDispatch()
-    const allCodes = useSelector((state) => state.codigos)
-    const [selected, setSelected] = useState({id: "1", name: "-"})
-
+export default function DropLaw() {
+    const listElements = [{id: 1, name: "-"}]
+    const [selected, setSelected] = useState(listElements[0])
+    const datos = useSelector((state) => state.titulos_normas)
 
 
-
-
-
-    const elementsList = (arr) => {
-        if(!arr) return
-        const data = []
+    const elementosLista = (arr) => {
         arr.map((el) => {
-            data.push({
-                id: el.id,
-                name: el.name
-            })
+            return (
+                listElements.push({
+                    id: el.id,
+                    name: el.name
+                })
+            )
         })
-        return data
+        return listElements
     }
 
-    const list = allCodes ? elementsList(allCodes.value ? allCodes.value : null) : null
 
 
-
-
+    const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(getArticulos(selected.id))
-    }, [selected]);
+
+            const settingStateArticulos = (obj) => {
+            if(obj.id === 1) return
+            dispatch(traerArticulos(obj.id))
+            dispatch(setNormaSelected(obj.name))
+        }
+            settingStateArticulos(selected)
+    },[selected, dispatch]);
 
 
-
-
-
-
+    const normas = datos.value ? elementosLista(datos.value) : null
 
     return (
         <Listbox value={selected} onChange={setSelected}>
             {({ open }) => (
                 <>
-
+                    <Listbox.Label className="block text-sm font-medium text-gray-700">Selecciona una normatividad del Estado de Hidalgo</Listbox.Label>
                     <div className="relative mt-1">
-                        <Listbox.Button className="relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-congresogold focus:outline-none focus:ring-1 focus:ring-congresogold sm:text-sm">
+                        <Listbox.Button className="relative w-full cursor-default rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
                             <span className="block truncate">{selected.name}</span>
                             <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                 <ChevronUpDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
@@ -73,21 +67,21 @@ export default function Example() {
                             leaveTo="opacity-0"
                         >
                             <Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                                {list?.map((ele) => (
+                                {normas?.map((norma) => (
                                     <Listbox.Option
-                                        key={ele.id}
+                                        key={norma.id}
                                         className={({ active }) =>
                                             classNames(
-                                                active ? 'text-white bg-congresogrisfuerte' : 'text-gray-900',
+                                                active ? 'text-white bg-indigo-600' : 'text-gray-900',
                                                 'relative cursor-default select-none py-2 pl-3 pr-9'
                                             )
                                         }
-                                        value={ele}
+                                        value={norma}
                                     >
                                         {({ selected, active }) => (
                                             <>
                         <span className={classNames(selected ? 'font-semibold' : 'font-normal', 'block truncate')}>
-                          {ele.name}
+                          {norma.name}
                         </span>
 
                                                 {selected ? (

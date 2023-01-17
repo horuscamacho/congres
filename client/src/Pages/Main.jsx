@@ -1,14 +1,25 @@
 import Footer from "../components/Footer";
-import NavBar from "../components/NavBar";
+//import NavBar from "../components/NavBar";
 import DropLaw from "../components/DropLaw";
 import LawList from "../components/LawList";
-import Buscador from "../components/Buscador";
+//import Buscador from "../components/Buscador";
+import {useDispatch} from "react-redux";
+import {useEffect} from "react";
+import {titulosNormas} from "../features/normas/traerNormasSlice";
+import NavBarLoggeado from "../components/NavBarLoggeado";
 
-function Main(props) {
+function Main() {
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+      dispatch(titulosNormas())
+    }, );
+
+
 
     return (
         <div>
-            <NavBar />
+            <NavBarLoggeado />
             {/* <Buscador /> */}
             <div className="  md:px-48 md:py-12 ">
                 <DropLaw />

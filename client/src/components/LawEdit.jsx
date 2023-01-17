@@ -1,26 +1,22 @@
 import {useDispatch, useSelector} from "react-redux";
-import {useState} from "react";
-import Form from "./Form";
-import Button from "./Button";
-import Modal from "./ModalSeguridad";
+import {useEffect} from "react";
+import {useLocation} from "react-router-dom";
+import {setArticulo} from "../features/articulos/articuloSeleccionadoSlice";
 
 
 
 export default function LawEdit() {
     const dispatch = useDispatch()
-    const dat = useSelector((state) => state.articulo)
-    const articulo = dat.value ? dat.value[0] : null
-    const [editable, setEditable] = useState(false);
+    const url = useLocation()
+    const articulo = useSelector((state) => state.articuloSeleccionado.value)
 
-
-
-
-    const handleOnClick = (e) => {
-        e.preventDefault()
-        editable === false ? setEditable(true) : setEditable(false)
-    }
-
-
+    console.log(articulo)
+    useEffect(() => {
+        return () => {
+            const id = url.pathname.split("/")
+            dispatch(setArticulo(id[2]))
+        };
+    }, [dispatch, url]);
 
 
     return (
@@ -95,16 +91,17 @@ export default function LawEdit() {
             <div className="relative px-6 lg:px-8">
                 <div className="mx-auto max-w-prose text-lg">
                     <h1>
-                        <span className="block text-center text-lg font-semibold text-black">Código { null }</span>
-                        <span className="block text-center text-lg font-semibold text-black">Última Modificación{ null }</span>
+                        <span className="block text-center text-lg font-semibold text-black">{articulo ? articulo.norma : null}</span>
+                        <span className="block text-center text-lg font-semibold text-black">{articulo ? `Última Actualización ${articulo.publicacion}` : null}</span>
+                        <span className={`block text-center text-lg font-semibold ${articulo && articulo.derogada ? 'text-red-800' : 'text-green-800' }`}>{articulo && articulo.derogada ? 'Derogada' : `Vigente` }</span>
                         <span className="mt-2 block text-center text-3xl font-bold leading-8 tracking-tight text-gray-900 sm:text-4xl">
-              Artículo { articulo?.articulo }°
+               {articulo ? `Artículo ${articulo.articulo}°` : null }
             </span>
                     </h1>
                     <p className="mt-8 text-xl leading-8 text-black">
-                        {articulo?.contenido }
+                        {articulo ? articulo.contenido : null}
                     </p>
-                    {editable === false ? <Button handleOnClick = {handleOnClick} /> : <Form handleOnClick = {handleOnClick} articulo ={articulo} /> }
+                    {/*editable === false ? <Button handleOnClick = {handleOnClick} /> : <Form handleOnClick = {handleOnClick} articulo ={articulo} /> */ }
                 </div>
 
             </div>

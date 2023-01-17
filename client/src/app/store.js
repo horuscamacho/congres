@@ -1,16 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit'
-import codesReducer from "../features/codes/codigosSlice";
-import codeSelectedReducer from '../features/codes/codeSelectedSlice'
-import articulosReducer from '../features/articulos/articulosSlice'
-import articuloReducer from '../features/articulos/articuloSlice'
-
+import articulosReducer from '../features/articulos/traerArticulosSlice'
+import titulos_articulos from '../features/normas/traerNormasSlice'
+import normaActivaReducer from '../features/normas/normaActivaSlice'
+import articuloSeleccionadoReducer from '../features/articulos/articuloSeleccionadoSlice'
 export const store = configureStore({
     reducer : {
-        codigos: codesReducer,
+        titulos_normas: titulos_articulos,
         articulos: articulosReducer,
-        articulo: articuloReducer,
-        codeSelectd: codeSelectedReducer,
-
+        normaSelected: normaActivaReducer,
+        articuloSeleccionado:  articuloSeleccionadoReducer
     }
 })
 
