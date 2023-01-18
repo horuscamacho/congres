@@ -7,7 +7,7 @@ export const loginSchema = yup.object().shape({
 
 
 
-export const createUser = yup.object().shape({
+export const crearUsuarioValidacion = yup.object().shape({
     user: yup.string().min(6, "La longitud mínima de 6 caracteres").max(6, "La longitud máxima es de 6 caracteres").required("Este campo es obligatorio"),
     name: yup.string().required("Este campo es obligatorio."),
     lastName: yup.string().required('Este campo es obligatorio.'),

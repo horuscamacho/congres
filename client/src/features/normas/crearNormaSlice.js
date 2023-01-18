@@ -4,39 +4,39 @@ import axios from 'axios'
 //const url = 'https://gorgeous-tan-earmuffs.cyclic.app/allcodes'
 const local = 'http://localhost:3001'
 
-export const createUser = createAsyncThunk(
-    'crearUsuario/createUser',
+
+export const createRule = createAsyncThunk(
+    'crearNorma/createRule',
     async (data) => {
         try{
-            const response = await axios.post(`${local}/crearusuario`, data)
+            const response = await axios.post(`${local}/crearnorma`, data)
             return response.data
-        } catch (e) {
+        }catch (e) {
             return e.message
         }
     }
 )
 
 
-
 const initialState = {
-    crearUsuario: [],
-    status: "idle",
+    crearNorma: [],
+    status: 'idle',
     error: null
 }
 
 
-export const createUsuario = createSlice({
-    name: "crearUsuario",
+export const crearNormaSlice = createSlice({
+    name: "crearNorma",
     initialState,
     reducers: {
 
     },
     extraReducers: (builder) => {
-        builder.addCase(createUser.fulfilled, (state, action) => {
+        builder.addCase(createRule.fulfilled, (state, action) => {
             state.value = action.payload
         })
     }
 })
 
-export default createUsuario.reducer
 
+export default crearNormaSlice.reducer

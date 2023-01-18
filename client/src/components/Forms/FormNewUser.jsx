@@ -1,9 +1,12 @@
 import ModalConfirmation from "../Modals/ModalConfirmation";
 import {useState} from "react";
 import {useFormik} from 'formik'
-import {createUser, loginSchema} from "./schemas/usuario";
+import {crearUsuarioValidacion, loginSchema} from "./schemas/usuario";
+import {useDispatch} from "react-redux";
+import {createUser} from '../../features/usuarios/createUsuarioSlice'
 
 export default function FormNewUser() {
+    const dispatch = useDispatch()
     const [openModal, setOpenModal] = useState(false);
     const text = "Estás a punto de crear un nuevo usuario, si revisaste correctamente los campos presiona Crear usuario de lo contrario Cancela e inténtalo nuevamente"
     const title = "Crear usuario"
@@ -13,9 +16,11 @@ export default function FormNewUser() {
         setOpenModal(true)
     }
 
-    const onSubmit = (values, actions) => {
-        console.log("Submitted")
-        actions.resetForm()
+    const submitNewUser = () => {
+        const data = dispatch(createUser(values))
+        console.log(data)
+        setOpenModal(false)
+        resetForm()
     }
 
     const {values, errors, handleBlur, touched, handleChange, handleSubmit, resetForm} = useFormik({
@@ -25,7 +30,7 @@ export default function FormNewUser() {
             lastName: "",
             account: ""
         },
-        validationSchema: createUser
+        validationSchema: crearUsuarioValidacion
     })
     const notValidated = "block w-full appearance-none rounded-md border border-red-900 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-black focus:outline-none focus:ring-black sm:text-sm"
     const validated = "block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-black focus:outline-none focus:ring-black sm:text-sm"
@@ -132,7 +137,7 @@ export default function FormNewUser() {
                 </div>
             </div>
 
-            {openModal === true ? <ModalConfirmation values={values} text={text} title={title} openModal={openModal} setOpenModal={setOpenModal} resetForm={resetForm}/> : null}
+            {openModal === true ? <ModalConfirmation values={values} text={text} title={title} openModal={openModal} setOpenModal={setOpenModal} resetForm={resetForm} submit={submitNewUser}/> : null}
         </form>
     )
 }
