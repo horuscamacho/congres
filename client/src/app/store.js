@@ -7,6 +7,9 @@ import titulos_normasReducer from '../features/normas/traerNormasSlice'
 import normaActivaReducer from '../features/normas/normaActivaSlice'
 import articuloSeleccionadoReducer from '../features/articulos/articuloSeleccionadoSlice'
 import usuarioLoginReducer from '../features/usuarios/loginUsuarioSlice'
+import crearUsuarioReducer from '../features/usuarios/createUsuarioSlice'
+
+
 const persistConfig = {
     key: 'root',
     storage,
@@ -19,6 +22,7 @@ const rootReducer = combineReducers({
     articulos: articulosReducer,
     normaSelected: normaActivaReducer,
     articuloSeleccionado:  articuloSeleccionadoReducer,
+    crearUsuario: crearUsuarioReducer
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

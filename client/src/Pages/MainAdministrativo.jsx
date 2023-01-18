@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import NavBarLoggeado from "../components/NavBarLoggeado";
-import Footer from "../components/Footer";
-import FormNewUser from "../components/FormNewUser";
+import FormNewUser from "../components/Forms/FormNewUser";
 import FoliosList from "../components/FoliosList";
 import Reportes from "../components/Reportes";
 

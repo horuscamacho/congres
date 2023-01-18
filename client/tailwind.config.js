@@ -8,11 +8,13 @@ module.exports = {
     extend: {
       colors: {
         'congresogold': '#d4a000',
-        'congresogrisfuerte': '#5c5c5c',
+        'congresoGrisFuerte': "#646567",
+        'congresogrisfuerte': '#cfcfcf',
         'congresgrissoft': '#e6e6e6',
         sky: colors.sky,
         teal: colors.teal,
         rose: colors.rose,
+
       }
     },
   },

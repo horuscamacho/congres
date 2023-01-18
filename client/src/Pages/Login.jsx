@@ -1,12 +1,10 @@
 import React from 'react';
-import LoginForm from "../components/LoginForm";
-import Footer from "../components/Footer";
+import LoginForm from "../components/Forms/LoginForm";
 
 function Login(props) {
     return (
         <div>
             <LoginForm />
-            <Footer />
         </div>
     );
 }

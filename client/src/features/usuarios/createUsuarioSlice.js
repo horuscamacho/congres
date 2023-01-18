@@ -4,11 +4,11 @@ import axios from 'axios'
 //const url = 'https://gorgeous-tan-earmuffs.cyclic.app/allcodes'
 const local = 'http://localhost:3001'
 
-export const intentarLog = createAsyncThunk(
-    'usuario/intentarLog',
-    async(data) => {
+export const createUser = createAsyncThunk(
+    'crearUsuario/createUser',
+    async (data) => {
         try{
-            const response = await axios.get(`${local}/login`, data)
+            const response = await axios.post(`${local}/crearusuario`, data)
             return response.data
         } catch (e) {
             return e.message
@@ -17,23 +17,26 @@ export const intentarLog = createAsyncThunk(
 )
 
 
+
 const initialState = {
     usuario: [],
-    status: 'idle',
+    status: "idle",
     error: null
 }
 
-export const loginUsuarioSlice = createSlice({
-    name: 'usuario',
+
+export const createUsuario = createSlice({
+    name: "crearUsuario",
     initialState,
     reducers: {
 
     },
     extraReducers: (builder) => {
-        builder.addCase(intentarLog.fulfilled, (state, action) => {
+        builder.addCase(createUser.fulfilled, (state, action) => {
             state.value = action.payload
         })
     }
 })
 
-export default loginUsuarioSlice.reducer
+export default createUsuario.reducer
+
