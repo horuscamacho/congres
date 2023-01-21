@@ -2,7 +2,6 @@ import logo from '../assets/logo.png'
 import {Fragment, useState} from 'react'
 import { Menu, Popover, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
-import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import FormNewUser from "../components/Forms/FormNewUser";
 import Reportes from "../components/Reportes";
 import FoliosList from "../components/FoliosList";
@@ -30,7 +29,7 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-export default function Example() {
+export default function MainAdmin() {
     const [display, setDisplay] = useState('newUser');
 
 

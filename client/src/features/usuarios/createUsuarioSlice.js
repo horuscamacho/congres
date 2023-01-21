@@ -7,6 +7,7 @@ const local = 'http://localhost:3001'
 export const createUser = createAsyncThunk(
     'crearUsuario/createUser',
     async (data) => {
+        console.log(data)
         try{
             const response = await axios.post(`${local}/crearusuario`, data)
             return response.data

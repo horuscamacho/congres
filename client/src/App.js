@@ -5,20 +5,17 @@ import Main from "./Pages/Main";
 import Login from "./Pages/Login";
 import MainAdministrativo from "./Pages/MainAdministrativo";
 import MainAdmin from "./Pages/MainAdmin";
-
+import PrivateRoutes from "./Routes/PrivateRoutes";
 
 
 function App() {
-    const datos = JSON.parse(localStorage.getItem('persist:root'))
-    console.log(datos)
-    console.log(JSON.parse(datos.usuario))
 
     return (
     <div className="App">
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<MainAdmin />} />
-                <Route path="/home" />
+                <Route path="/home" element={<PrivateRoutes />} />
+                <Route index element={<Login />} />
                 <Route path="/:norma/:id" element={<EditArticle />}/>
             </Routes>
         </BrowserRouter>

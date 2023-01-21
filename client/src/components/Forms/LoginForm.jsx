@@ -1,21 +1,29 @@
 import logo from '../../assets/SELLO_LXV.png'
 import {useFormik} from 'formik'
 import {loginSchema} from "./schemas/usuario";
+import {intentarLog} from "../../features/usuarios/loginUsuarioSlice";
+import {useDispatch} from "react-redux";
+import {useNavigate} from "react-router-dom";
 export default function LoginForm() {
-
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
     const onSubmit = (values, actions) => {
-        console.log("Submitted")
+        console.log(values)
+        dispatch(intentarLog(values))
         actions.resetForm()
+        navigate("/home")
     }
 
     const {values, errors, handleBlur, touched, handleChange, handleSubmit} = useFormik({
         initialValues: {
             usuario: "",
-            password: ""
+            contrasena: ""
         },
         validationSchema: loginSchema,
         onSubmit
     })
+
+
 
     const notValidated = "block w-full appearance-none rounded-md border border-red-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-black focus:outline-none focus:ring-black sm:text-sm"
     const validated = "block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-black focus:outline-none focus:ring-black sm:text-sm"
@@ -52,27 +60,27 @@ export default function LoginForm() {
                                         className={errors.usuario && touched.usuario ? notValidated : validated}
                                     />
                                 </div>
-                                {errors.password && touched.usuario && <p className="text-red-900 text-xs">{errors.usuario}</p>}
+                                {errors.usuario && touched.usuario && <p className="text-red-900 text-xs">{errors.usuario}</p>}
                             </div>
 
                             <div>
-                                <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                                <label htmlFor="contrasena" className="block text-sm font-medium text-gray-700">
                                     Contraseña
                                 </label>
                                 <div className="mt-1">
                                     <input
-                                        id="password"
-                                        name="password"
-                                        type="password"
-                                        value={values.password}
+                                        id="contrasena"
+                                        name="contrasena"
+                                        type="contrasena"
+                                        value={values.contrasena}
                                         onChange={handleChange}
                                         onBlur={handleBlur}
                                         autoComplete="current-password"
                                         required
-                                        className={errors.password && touched.password ? notValidated : validated}
+                                        className={errors.contrasena && touched.contrasena ? notValidated : validated}
                                     />
                                 </div>
-                                {errors.password && touched.password && <p className="text-red-900 text-xs">{errors.password}</p>}
+                                {errors.contrasena && touched.contrasena && <p className="text-red-900 text-xs">{errors.contrasena}</p>}
                             </div>
 
 

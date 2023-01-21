@@ -8,7 +8,8 @@ export const intentarLog = createAsyncThunk(
     'usuario/intentarLog',
     async(data) => {
         try{
-            const response = await axios.get(`${local}/login`, data)
+            const response = await axios.post(`${local}/login`, data)
+            console.log(data)
             return response.data
         } catch (e) {
             return e.message

@@ -16,7 +16,7 @@ export default function FormNewUser() {
         setOpenModal(true)
     }
 
-    const submitNewUser = () => {
+    const submitNewUser =  () => {
         const data = dispatch(createUser(values))
         console.log(data)
         setOpenModal(false)
@@ -25,16 +25,19 @@ export default function FormNewUser() {
 
     const {values, errors, handleBlur, touched, handleChange, handleSubmit, resetForm} = useFormik({
         initialValues: {
-            user: "",
-            name: "",
-            lastName: "",
-            account: ""
+            usuario: "",
+            nombre: "",
+            apellido: "",
+            permisos: ""
         },
         validationSchema: crearUsuarioValidacion
     })
     const notValidated = "block w-full appearance-none rounded-md border border-red-900 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-black focus:outline-none focus:ring-black sm:text-sm"
     const validated = "block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-black focus:outline-none focus:ring-black sm:text-sm"
 
+
+    console.log(values)
+    console.log(errors)
 
     return (
         <form className="space-y-8 divide-y divide-gray-200 px-10 mb-20 "
@@ -46,78 +49,78 @@ export default function FormNewUser() {
                     <div className="space-y-6 sm:space-y-5">
 
                         <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
-                            <label htmlFor="user" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
+                            <label htmlFor="usuario" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                                 Nombre de Usuario
                             </label>
                             <div className="mt-1 sm:col-span-2 sm:mt-0">
                                 <input
                                     type="text"
-                                    name="user"
-                                    id="user"
-                                    value={values.user}
+                                    name="usuario"
+                                    id="usuario"
+                                    value={values.usuario}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
-                                    className={errors.user && touched.user ? notValidated : validated}
+                                    className={errors.usuario && touched.usuario ? notValidated : validated}
 
                                 />
-                                {errors.user && touched.user && <p className="text-red-900 text-xs">{errors.user}</p>}
+                                {errors.usuario && touched.usuario && <p className="text-red-900 text-xs">{errors.usuario}</p>}
                             </div>
                         </div>
                         <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
-                            <label htmlFor="name" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
+                            <label htmlFor="nombre" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                                 Nombre/s
                             </label>
                             <div className="mt-1 sm:col-span-2 sm:mt-0">
                                 <input
                                     type="text"
-                                    name="name"
-                                    id="name"
-                                    value={values.name}
+                                    name="nombre"
+                                    id="nombre"
+                                    value={values.nombre}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
-                                    className={errors.name && touched.name ? notValidated : validated}
+                                    className={errors.nombre && touched.nombre ? notValidated : validated}
                                 />
-                                {errors.name && touched.name && <p className="text-red-900 text-xs">{errors.name}</p>}
+                                {errors.nombre && touched.nombre && <p className="text-red-900 text-xs">{errors.nombre}</p>}
                             </div>
                         </div>
 
                         <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
-                            <label htmlFor="last-name" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
+                            <label htmlFor="apellido" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                                 Apellido
                             </label>
                             <div className="mt-1 sm:col-span-2 sm:mt-0">
                                 <input
                                     type="text"
-                                    name="lastName"
-                                    id="lastName"
-                                    value={values.lastName}onChange={handleChange}
+                                    name="apellido"
+                                    id="apellido"
+                                    value={values.apellido}onChange={handleChange}
                                     onBlur={handleBlur}
-                                    className={errors.lastName && touched.lastName ? notValidated : validated}
+                                    className={errors.apellido && touched.apellido ? notValidated : validated}
                                 />
-                                {errors.lastName && touched.lastName && <p className="text-red-900 text-xs">{errors.lastName}</p>}
+                                {errors.apellido && touched.apellido && <p className="text-red-900 text-xs">{errors.apellido}</p>}
                             </div>
                         </div>
 
 
 
                         <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
-                            <label htmlFor="country" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
+                            <label htmlFor="permisos" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                                 Tipo de cuenta
                             </label>
                             <div className="mt-1 sm:col-span-2 sm:mt-0">
                                 <select
-                                    id="account"
-                                    name="account"
-                                    value={values.account}
+                                    id="permisos"
+                                    name="permisos"
+                                    value={values.permisos}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
-                                    className={errors.account && touched.account ? notValidated : validated}
+                                    className={errors.permisos && touched.permisos ? notValidated : validated}
                                 >
                                     <option></option>
                                     <option>Completo</option>
                                     <option>Historial</option>
                                 </select>
-                                {errors.account && touched.account && <p className="text-red-900 text-xs">{errors.account}</p>}
+                                {errors.permisos && touched.permisos && <p className="text-red-900 text-xs">{errors.permisos}</p>}
                             </div>
                         </div>
                     </div>
@@ -130,7 +133,7 @@ export default function FormNewUser() {
                         type="submit"
                         className="ml-3 inline-flex justify-center rounded-md border border-transparent bg-congresoGrisFuerte py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-congresgrissoft hover:text-congresoGrisFuerte focus:outline-none focus:ring-2 focus:ring-congresogold focus:ring-offset-2"
                         onClick={(e) => handleOnClick(e)}
-                        disabled={errors.user || errors.account || errors.name || errors.lastName || !values.user || !values.lastName || !values.name || !values.account ? true : false }
+                        disabled={errors.usuario || errors.permisos || errors.nombre || errors.apellido || !values.usuario || !values.apellido || !values.nombre || !values.permisos ? true : false }
                     >
                         Crear Usuario
                     </button>
