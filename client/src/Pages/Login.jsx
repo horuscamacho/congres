@@ -6,7 +6,7 @@ import {useNavigate} from "react-router-dom";
 function Login(props) {
     const usuario = useSelector((state) => state.usuario)
     const navigate = useNavigate()
-    const [logged, ] = useState(usuario.value.token);
+    const [logged, ] = useState(usuario.value.token ? usuario.value.token : null);
     useEffect(() => {
            if(logged !== undefined) {
                navigate('/home')
