@@ -9,10 +9,11 @@ function Login(props) {
     const [logged, ] = useState(usuario.value && usuario.value.token ? usuario.value.token : null);
     console.log(logged)
     useEffect(() => {
-           if(logged !== null || logged !== undefined) {
-             navigate('/home')
-           } else {
+           if(logged === null || logged === undefined) {
                navigate('/')
+
+           } else {
+               navigate('/home')
            }
 
     }, [logged, navigate]);
