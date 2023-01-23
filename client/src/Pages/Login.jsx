@@ -10,9 +10,9 @@ function Login(props) {
     console.log(logged)
     useEffect(() => {
            if(logged !== undefined) {
-               navigate('/home')
+             //  navigate('/home')
            } else {
-               navigate('/')
+            //   navigate('/')
            }
 
     }, [logged, navigate]);
