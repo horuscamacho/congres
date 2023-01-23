@@ -16,10 +16,10 @@ function PrivateRoutes() {
 
     return (
         <>
-            {usuario.value.admin ? <MainAdmin /> : null}
-            {usuario.value.permisos === "Completo" ? <MainCompleto /> : null}
-            {usuario.value.permisos === "Historial" ? <MainHistory /> : null}
-            {usuario.value.token === undefined ? <GoToLoggin /> : null}
+            {usuario.value && usuario.value.admin ? <MainAdmin /> : null}
+            {usuario.value && usuario.value.permisos === "Completo" ? <MainCompleto /> : null}
+            {usuario.value && usuario.value.permisos === "Historial" ? <MainHistory /> : null}
+            {usuario.value && usuario.value.token === undefined ? <GoToLoggin /> : null}
         </>
     )
 }
