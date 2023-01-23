@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import ModalSeguridad from "./ModalSeguridad";
+import ModalSeguridad from "../Modals/ModalSeguridad";
 
 export default function Form(props) {
     const {handleOnClick, articulo} = props

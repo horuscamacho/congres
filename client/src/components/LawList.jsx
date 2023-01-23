@@ -1,48 +1,27 @@
-import {useDispatch, useSelector} from "react-redux";
-
-import {getArticulo} from "../features/articulos/articuloSlice";
-import {useNavigate} from "react-router-dom";
-
-
-
-
-const getArticles = (arr) => {
-    const data = []
-    if(!arr) return
-    arr.map(el => {
-        data.push({
-            id: el.id,
-            articulo: el.articulo,
-            publicacion: el.publicacion,
-            texto: el.contenido
-        })
-    })
-    return data
-}
-
-export default function LawList() {
-    const data = useSelector((state) => state.articulos)
-    const codigo = data.value ? data.value : null
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
-
-    const handleOnClick = (e) => {
-        e.preventDefault()
-        dispatch(getArticulo())
-    }
+import { useSelector} from "react-redux";
 
 
 
 
 
-    const elements = codigo ? getArticles(codigo) : null
+
+export default function LawList(props) {
+    const articulos = useSelector((state) => state.articulos)
+    const normaSelected = useSelector((state) => state.normaSelected.value)
+    const todosLosArticulos = articulos.value ? articulos.value : null
+
+
+
+
+
+
 
 
     return (
         <div className="px-4 sm:px-6 lg:px-8">
             <div className="sm:flex sm:items-center">
                 <div className="sm:flex-auto">
-                    <h1 className="text-xl font-semibold text-gray-900">{codigo ? codigo.codigo : null}</h1>
+                    <h1 className="text-xl font-semibold text-gray-900">{normaSelected ? normaSelected : null}</h1>
 
                 </div>
 
@@ -64,7 +43,7 @@ export default function LawList() {
                                         scope="col"
                                         className="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900"
                                     >
-                                        Publicación
+                                        Última Modificación
                                     </th>
 
                                     <th
@@ -80,22 +59,17 @@ export default function LawList() {
                                 </tr>
                                 </thead>
                                 <tbody className="divide-y divide-gray-200 bg-white">
-                                {elements?.map((element) => (
-                                    <tr key={element.id}>
+                                {todosLosArticulos?.map((articulo) => (
+                                    <tr key={articulo.id}>
                                         <td className="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
-                                            {element.articulo}°
+                                            {articulo.articulo}°
                                         </td>
                                         <td className="whitespace-nowrap px-2 py-2 text-left text-sm font-medium text-gray-900">
-                                            {element.publicacion}
+                                            {articulo.publicacion}
                                         </td>
-                                        <td className="whitespace-nowrap px-2 py-2 text-left text-sm text-gray-900">{element.texto.slice(0, 90)}...</td>
+                                        <td className="whitespace-nowrap px-2 py-2 text-left text-sm text-gray-900">{articulo.contenido.slice(0, 90)}...</td>
                                         <td className="relative whitespace-nowrap py-2 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 ">
-                                            <a  className="text-black hover:text-congresogold hover:cursor-pointer" onClick={(e) => {
-                                            e.preventDefault()
-                                                dispatch(getArticulo(element.id))
-                                                navigate(`/article/${element.articulo}`)
-                                            }
-                                            }>
+                                            <a href={`/${normaSelected}/${articulo.id}`} className="text-black hover:text-congresogold hover:cursor-pointer" >
                                                 Editar
                                             </a>
                                         </td>

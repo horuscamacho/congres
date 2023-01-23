@@ -21,7 +21,9 @@ export default function NavBar() {
                         >
                             Cerrar Sesión
                         </a>
+
                     </div>
+
                 </div>
             </nav>
         </header>
