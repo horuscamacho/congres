@@ -1,7 +1,7 @@
 import ModalConfirmation from "../Modals/ModalConfirmation";
 import {useState} from "react";
 import {useFormik} from 'formik'
-import {crearUsuarioValidacion, loginSchema} from "./schemas/usuario";
+import {crearUsuarioValidacion} from "./schemas/usuario";
 import {useDispatch} from "react-redux";
 import {createUser} from '../../features/usuarios/createUsuarioSlice'
 
@@ -17,8 +17,7 @@ export default function FormNewUser() {
     }
 
     const submitNewUser =  () => {
-        const data = dispatch(createUser(values))
-        console.log(data)
+        dispatch(createUser(values))
         setOpenModal(false)
         resetForm()
     }
@@ -36,16 +35,16 @@ export default function FormNewUser() {
     const validated = "block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-black focus:outline-none focus:ring-black sm:text-sm"
 
 
-    console.log(values)
-    console.log(errors)
-
     return (
         <form className="space-y-8 divide-y divide-gray-200 px-10 mb-20 "
         onSubmit={handleSubmit}
         >
             <div className="space-y-8 divide-y divide-gray-200 sm:space-y-5">
-                <div className="space-y-6 pt-8 sm:space-y-5 sm:pt-10">
+                <div className="space-y-6 sm:space-y-5">
                     <h3 className="text-xl font-bold font-medium leading-6 text-congresoGrisFuerte">Crear un nuevo usuario</h3>
+                    <p className="mt-1  text-sm text-gray-500">
+                        La contraseña por default será 123456, una vez que inicie sesión el nuevo usuario, será necesario que establezca una nueva contraseña..
+                    </p>
                     <div className="space-y-6 sm:space-y-5">
 
                         <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">

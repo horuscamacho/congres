@@ -12,8 +12,7 @@ export default function FormNewRule() {
 
 
     const submitNewRule = () => {
-        const data = dispatch(createRule(values))
-        console.log(data)
+        dispatch(createRule(values))
         setOpenModal(false)
         resetForm()
     }
@@ -26,7 +25,7 @@ export default function FormNewRule() {
     const text = "Estás a punto de crear una nueva norma, si revisaste correctamente el nombre presiona Crear Norma, de lo contrario haz click en cancelar"
     const title = "Crear norma"
 
-    const notValidated = "block w-full appearance-none rounded-md border border-red-900 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-black focus:outline-none focus:ring-black sm:text-sm"
+   // const notValidated = "block w-full appearance-none rounded-md border border-red-900 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-black focus:outline-none focus:ring-black sm:text-sm"
     const validated = "block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-black focus:outline-none focus:ring-black sm:text-sm"
 
 
@@ -38,7 +37,6 @@ export default function FormNewRule() {
         validationSchema: crearNormaControl
     })
 
-    console.log(errors)
 
     return (
         <form className="space-y-8 divide-y divide-gray-200"
@@ -48,6 +46,9 @@ export default function FormNewRule() {
                 <div className="space-y-6 sm:space-y-5">
                     <div>
                         <h3 className="text-xl font-bold font-medium leading-6 text-congresoGrisFuerte">Crear nueva norma</h3>
+                        <p className="mt-1  text-sm text-gray-500">
+                            Solo el usuario admin podrá genera nuevas normatividades.
+                        </p>
                     </div>
 
                     <div className="space-y-6 sm:space-y-5">

@@ -1,7 +1,10 @@
 import React from 'react';
 import MainAdmin from "../Pages/MainAdmin";
-import Main from "../Pages/Main";
-import MainAdministrativo from "../Pages/MainAdministrativo";
+import {useSelector} from "react-redux";
+import GoToLoggin from "../Pages/GoToLoggin";
+import MainCompleto from "../Pages/MainCompleto";
+import MainHistory from "../Pages/MainHistory";
+
 
 
 
@@ -9,14 +12,14 @@ import MainAdministrativo from "../Pages/MainAdministrativo";
 
 
 function PrivateRoutes() {
-    const datos = JSON.parse(localStorage.getItem('persist:root'))
-    const usuario = datos ? JSON.parse(datos.usuario) : null
-    const value = usuario?.value
-    console.log(value)
+    const usuario = useSelector((state) => state.usuario)
+
     return (
         <>
-            {value && value.admin ? <MainAdmin /> : null}
-            {value && value.permisos === "Completo" ? <Main /> : null}
+            {usuario.value.admin ? <MainAdmin /> : null}
+            {usuario.value.permisos === "Completo" ? <MainCompleto /> : null}
+            {usuario.value.permisos === "Historial" ? <MainHistory /> : null}
+            {usuario.value.token === undefined ? <GoToLoggin /> : null}
         </>
     )
 }

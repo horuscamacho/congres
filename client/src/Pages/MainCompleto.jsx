@@ -1,22 +1,22 @@
 import logo from '../assets/logo.png'
-import {Fragment, useState} from 'react'
+import {Fragment,  useState} from 'react'
 import { Menu, Popover, Transition } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import FormNewUser from "../components/Forms/FormNewUser";
-import Reportes from "../components/Reportes";
-import FoliosList from "../components/FoliosList";
-import FormNewRule from "../components/Forms/FormNewRule";
-import FormEditUser from "../components/Forms/FormEditUser";
 import {clearStore} from "../features/usuarios/loginUsuarioSlice";
 import {useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
+import FormEditArticle from "../components/Forms/FormEditArticle";
+import FormEditHistory from "../components/Forms/FormEditHistory";
+import FormNewArticle from "../components/Forms/FormNewArticle";
+import FormNewHistory from "../components/Forms/FormNewHistory";
+import FoliosList from "../components/FoliosList";
 
 
 const navigation = [
-    { name: 'Crear usuario',  value: "newUser" },
-    { name: 'Editar usuario',  value: "editUser" },
-    { name: 'Crear normatividad', value: "newRule" },
-    { name: 'Reportes', value: "reports" },
+    { name: 'Modificar Artículo',  value: "modifArt" },
+    { name: 'Modificar Histórico',  value: "modifHist" },
+    { name: 'Crear Artículo',  value: "createArt" },
+    { name: 'Crear Histórico', value: "createHist" },
     { name: 'Folios', value: "invoice" },
 ]
 const userNavigation = [
@@ -27,11 +27,11 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-export default function MainAdmin(props) {
-    const [display, setDisplay] = useState('newUser');
+export default function MainCompleto(props) {
+    const [display, setDisplay] = useState('modifArt');
     const dispatch = useDispatch()
     const navigate = useNavigate()
- //   const token = useSelector((state) => state.usuario.value.token)
+   // const token = useSelector((state) => state.usuario.value.token)
     const handleOnClickNavigation = (e) => {
         e.preventDefault()
         setDisplay(e.target.value)
@@ -197,10 +197,10 @@ export default function MainAdmin(props) {
                                                         {navigation.map((el) => {
                                                             return (
                                                                 <button
-                                                                key={el.name}
-                                                                value={el.value}
-                                                                onClick={(e)=> handleOnClickNavigation(e)}
-                                                                className="block rounded-md w-full px-3 py-2 text-base font-medium text-gray-900 hover:bg-gray-100 hover:text-gray-800"
+                                                                    key={el.name}
+                                                                    value={el.value}
+                                                                    onClick={(e)=> handleOnClickNavigation(e)}
+                                                                    className="block rounded-md w-full px-3 py-2 text-base font-medium text-gray-900 hover:bg-gray-100 hover:text-gray-800"
                                                                 >
                                                                     {el.name}
                                                                 </button>
@@ -217,7 +217,7 @@ export default function MainAdmin(props) {
                                                         {userNavigation.map((item) => (
                                                             <button
                                                                 key={item.name}
-                                                                className="block w-full rounded-md px-3 py-2 text-base font-medium text-gray-900 hover:bg-gray-100 hover:text-gray-800"
+                                                                className="block rounded-md px-3 py-2 text-base font-medium text-gray-900 hover:bg-gray-100 hover:text-gray-800"
                                                                 onClick={(e) => handleCloseSession(e)}
                                                             >
                                                                 {item.name}
@@ -246,7 +246,7 @@ export default function MainAdmin(props) {
                                     </h2>
                                     <div className="overflow-hidden rounded-lg bg-white shadow">
                                         <div className="p-6">{
-                                            display === "newUser" ? <FormNewUser /> : display === "invoice" ? <FoliosList /> : display === "reports" ? <Reportes /> : display === "newRule" ? <FormNewRule /> : display === "editUser" ? <FormEditUser /> : null
+                                            display === "modifArt" ? <FormEditArticle /> : display === "modifHist" ? <FormEditHistory /> : display === "createArt" ? <FormNewArticle /> : display === "createHist" ? <FormNewHistory /> : display === "invoice" ? <FoliosList /> : null
                                         }</div>
                                     </div>
                                 </section>

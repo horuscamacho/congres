@@ -1,9 +1,9 @@
-import {useSelector} from "react-redux";
+//import {useSelector} from "react-redux";
 
 
 
-export default function FormEditRule() {
-    const normas = useSelector((state) => state.titulos_normas.value)
+export default function FormNewHistory() {
+   // const normas = useSelector((state) => state.titulos_normas.value)
 
 
     return (
@@ -11,9 +11,9 @@ export default function FormEditRule() {
             <div className="space-y-8 divide-y divide-gray-200 sm:space-y-5">
                 <div className="space-y-6 sm:space-y-5">
                     <div>
-                        <h3 className="text-lg font-medium leading-6 text-gray-900">Editar artículo</h3>
+                        <h3 className="text-lg font-bold font-medium leading-6 text-gray-900">Crear histórico</h3>
                         <p className="mt-1 text-sm text-gray-500">
-                            Este formulario es para modificar un artículo existente
+                            Este formulario es para crear un nuevo histórico sobre un artículo existente.
                         </p>
                     </div>
 
@@ -36,9 +36,10 @@ export default function FormEditRule() {
                             </div>
                         </div>
 
+
                         <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
                             <label htmlFor="first-name" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
-                                Número de artículo
+                                Artículo
                             </label>
                             <div className="mt-1 sm:col-span-2 sm:mt-0">
                                 <input
@@ -46,10 +47,11 @@ export default function FormEditRule() {
                                     name="first-name"
                                     id="first-name"
                                     autoComplete="given-name"
-                                    className="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-congresogold focus:ring-congresogold sm:max-w-xs sm:text-sm"
+                                    className="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm"
                                 />
                             </div>
                         </div>
+
 
                         <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
                             <label htmlFor="about" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
@@ -63,7 +65,7 @@ export default function FormEditRule() {
                     className="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-congresogold focus:ring-congresogold sm:text-sm"
                     defaultValue={''}
                 />
-                                <p className="mt-2 text-sm text-gray-500">Escribe aquí el texto del artículo.</p>
+                                <p className="mt-2 text-sm text-gray-500">Este será el texto vigente del artículo que va a crearse.</p>
                             </div>
                         </div>
                     </div>

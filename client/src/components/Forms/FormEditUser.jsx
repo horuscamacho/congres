@@ -3,19 +3,19 @@ export default function FormEditUser() {
 
 
 
-    const notValidated = "block w-full appearance-none rounded-md border border-red-900 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-black focus:outline-none focus:ring-black sm:text-sm"
+   // const notValidated = "block w-full appearance-none rounded-md border border-red-900 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-black focus:outline-none focus:ring-black sm:text-sm"
     const validated = "block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-black focus:outline-none focus:ring-black sm:text-sm"
 
 
 
     return (
-        <form className="space-y-8 divide-y divide-gray-200">
+        <form className="space-y-8 divide-y divide-gray-200 px-10 mb-20 ">
             <div className="space-y-8 divide-y divide-gray-200 sm:space-y-5">
                 <div className="space-y-6 sm:space-y-5">
                     <div>
                         <h3 className="text-xl font-bold font-medium leading-6 text-congresoGrisFuerte">Editar usuario existente.</h3>
                         <p className="mt-1  text-sm text-gray-500">
-                            Selecciona un usuario antes de continuar para poder editar, eliminar o reactivarlas
+                            Selecciona un usuario antes de continuar para poder editar, eliminar o reactivar una cuenta.
                         </p>
                     </div>
                     <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">

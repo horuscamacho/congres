@@ -1,9 +1,9 @@
-import {useSelector} from "react-redux";
+//import {useSelector} from "react-redux";
 
 
 
-export default function FormEditRule() {
-    const normas = useSelector((state) => state.titulos_normas.value)
+export default function FormEditArticle() {
+   // const normas = useSelector((state) => state.titulos_normas.value)
 
 
     return (
@@ -19,14 +19,13 @@ export default function FormEditRule() {
 
                     <div className="space-y-6 sm:space-y-5">
                         <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
-                            <label htmlFor="country" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
-                                Normatividad
+                            <label htmlFor="norma" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
+                                Norma
                             </label>
                             <div className="mt-1 sm:col-span-2 sm:mt-0">
                                 <select
-                                    id="country"
-                                    name="country"
-                                    autoComplete="country-name"
+                                    id="norma"
+                                    name="norma"
                                     className="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-congresogold focus:ring-congresogold sm:max-w-xs sm:text-sm"
                                 >
                                     <option>United States</option>
@@ -37,19 +36,22 @@ export default function FormEditRule() {
                         </div>
 
                         <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
-                            <label htmlFor="first-name" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
-                                Número de artículo
+                            <label htmlFor="articulo" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
+                                Artículo
                             </label>
                             <div className="mt-1 sm:col-span-2 sm:mt-0">
-                                <input
-                                    type="text"
-                                    name="first-name"
-                                    id="first-name"
-                                    autoComplete="given-name"
+                                <select
+                                    id="articulo"
+                                    name="articulo"
                                     className="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-congresogold focus:ring-congresogold sm:max-w-xs sm:text-sm"
-                                />
+                                >
+                                    <option>United States</option>
+                                    <option>Canada</option>
+                                    <option>Mexico</option>
+                                </select>
                             </div>
                         </div>
+
 
                         <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
                             <label htmlFor="about" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
@@ -63,7 +65,7 @@ export default function FormEditRule() {
                     className="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-congresogold focus:ring-congresogold sm:text-sm"
                     defaultValue={''}
                 />
-                                <p className="mt-2 text-sm text-gray-500">Escribe aquí el texto del artículo.</p>
+                                <p className="mt-2 text-sm text-gray-500">Así quedaría el nuevo texto vigente del artículo.</p>
                             </div>
                         </div>
                     </div>

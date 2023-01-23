@@ -9,7 +9,7 @@ export const createUser = createAsyncThunk(
     async (data) => {
         console.log(data)
         try{
-            const response = await axios.post(`${local}/crearusuario`, data)
+            const response = await axios.post(`${local}/register`, data)
             return response.data
         } catch (e) {
             return e.message

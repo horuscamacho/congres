@@ -8,7 +8,6 @@ export default function LoginForm() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const onSubmit = (values, actions) => {
-        console.log(values)
         dispatch(intentarLog(values))
         actions.resetForm()
         navigate("/home")
@@ -71,7 +70,7 @@ export default function LoginForm() {
                                     <input
                                         id="contrasena"
                                         name="contrasena"
-                                        type="contrasena"
+                                        type="password"
                                         value={values.contrasena}
                                         onChange={handleChange}
                                         onBlur={handleBlur}

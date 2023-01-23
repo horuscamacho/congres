@@ -1,15 +1,15 @@
 import {Fragment, useEffect, useRef, useState} from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { UserIcon } from '@heroicons/react/24/outline'
-import {useDispatch} from "react-redux";
-import {createUser} from "../../features/usuarios/createUsuarioSlice";
+//import {useDispatch} from "react-redux";
+//import {createUser} from "../../features/usuarios/createUsuarioSlice";
 
 
 
 
 export default function ModalConfirmation(props) {
-    const dispatch = useDispatch()
-    const{title,text, openModal, setOpenModal, values, resetForm, submit } = props
+   // const dispatch = useDispatch()
+    const{title,text, openModal, setOpenModal, values,  submit } = props
     const [open, setOpen] = useState(openModal)
 
 

@@ -1,13 +1,20 @@
 import {createSlice ,createAsyncThunk} from "@reduxjs/toolkit";
 import axios from 'axios'
 
+
 //const url = 'https://gorgeous-tan-earmuffs.cyclic.app/allcodes'
 const local = 'http://localhost:3001'
 export const titulosNormas = createAsyncThunk(
     'titulos_normas/titulosNormas',
     async (data) => {
         try{
-            const response = await axios.get(`${local}/consultarnormas`)
+            const response = await axios.post(`${local}/consultarnormas`, null ,
+                {
+                    headers: {
+                        'authorization': data
+                    }
+                }
+            )
             return response.data
         } catch (e) {
             return e.message

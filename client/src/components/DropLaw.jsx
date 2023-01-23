@@ -18,7 +18,7 @@ export default function DropLaw() {
 
 
     const elementosLista = (arr) => {
-        arr.map((el) => {
+        arr?.map((el) => {
             return (
                 listElements.push({
                     id: el.id,

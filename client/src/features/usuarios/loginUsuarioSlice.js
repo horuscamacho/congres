@@ -9,7 +9,6 @@ export const intentarLog = createAsyncThunk(
     async(data) => {
         try{
             const response = await axios.post(`${local}/login`, data)
-            console.log(data)
             return response.data
         } catch (e) {
             return e.message
@@ -28,7 +27,9 @@ export const loginUsuarioSlice = createSlice({
     name: 'usuario',
     initialState,
     reducers: {
-
+        clearStore: (state) => {
+            state.value = {}
+        }
     },
     extraReducers: (builder) => {
         builder.addCase(intentarLog.fulfilled, (state, action) => {
@@ -37,4 +38,5 @@ export const loginUsuarioSlice = createSlice({
     }
 })
 
+export const { clearStore } = loginUsuarioSlice.actions
 export default loginUsuarioSlice.reducer
