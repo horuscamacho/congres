@@ -1,5 +1,4 @@
 import {combineReducers, configureStore} from '@reduxjs/toolkit'
-import storage from 'redux-persist/lib/storage'
 import {persistReducer} from 'redux-persist'
 import thunk from "redux-thunk";
 import articulosReducer from '../features/articulos/traerArticulosSlice'
@@ -9,10 +8,12 @@ import articuloSeleccionadoReducer from '../features/articulos/articuloSeleccion
 import usuarioLoginReducer from '../features/usuarios/loginUsuarioSlice'
 import crearUsuarioReducer from '../features/usuarios/createUsuarioSlice'
 import crearNormaSlice from '../features/normas/crearNormaSlice'
+import {CookieStorage} from "redux-persist-cookie-storage";
+import Cookies from 'cookies-js'
 
 const persistConfig = {
     key: 'root',
-    storage,
+    storage: new CookieStorage(Cookies, {}),
     whitelist: ['titulos_normas', 'usuario']
 }
 
