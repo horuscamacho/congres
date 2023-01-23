@@ -14,8 +14,7 @@ function App() {
         <BrowserRouter>
             <Routes>
                 <Route path="/home" element={<PrivateRoutes />} />
-                <Route index element={<Login />} />
-                <Route path="/:norma/:id" element={<EditArticle />}/>
+                <Route path="/" element={<Login />} />
             </Routes>
         </BrowserRouter>
     </div>
