@@ -14,7 +14,7 @@ import Cookies from 'cookies-js'
 const persistConfig = {
     key: 'root',
     storage: new CookieStorage(Cookies, {}),
-    whitelist: ['titulos_normas', 'usuario']
+    whitelist: ['titulos_normas', 'usuario'],
 }
 
 const rootReducer = combineReducers({
@@ -31,6 +31,8 @@ const persistedReducer = persistReducer(persistConfig, rootReducer)
 
 export const store = configureStore({
     reducer : persistedReducer,
-    middleware: [thunk]
-})
+    middleware: [thunk],
+},
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    )
 
