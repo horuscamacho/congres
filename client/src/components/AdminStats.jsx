@@ -2,11 +2,7 @@ import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {getStats} from "../features/stats/traerEstadisticasSlice";
 
-const statss = [
-    { name: 'Normas', stat: '3' },
-    { name: 'Artículos', stat: '657' },
-    { name: 'Usuarios', stat: '14' },
-]
+
 
 export default function AdminStats() {
     const dispatch = useDispatch()
