@@ -11,10 +11,10 @@ export default function AdminStats() {
 
 
     useEffect(() => {
-        return () => {
-            dispatch(getStats())
-        };
-    }, []);
+
+        dispatch(getStats())
+
+    },);
 
 
 
