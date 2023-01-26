@@ -34,7 +34,7 @@ export default function LoginForm() {
             <div className="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8 lg:mb-32 ">
                 <div className="sm:mx-auto sm:w-full sm:max-w-md">
                     <img
-                        className="mx-auto h-12 w-auto"
+                        className="mx-auto h-24 w-auto"
                         src={logo}
                         alt="Your Company"
                     />
