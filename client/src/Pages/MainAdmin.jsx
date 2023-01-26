@@ -1,5 +1,5 @@
 import logo from '../assets/logo.png'
-import {Fragment, useState} from 'react'
+import {Fragment, useEffect, useState} from 'react'
 import { Menu, Popover, Transition } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import FormNewUser from "../components/Forms/FormNewUser";
@@ -8,8 +8,12 @@ import FoliosList from "../components/FoliosList";
 import FormNewRule from "../components/Forms/FormNewRule";
 import FormEditUser from "../components/Forms/FormEditUser";
 import {clearStore} from "../features/usuarios/loginUsuarioSlice";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
+import {bringUsers} from "../features/usuarios/bringAllUsersSlice";
+import AdminStats from "../components/AdminStats";
+import {getStats} from "../features/stats/traerEstadisticasSlice";
+
 
 
 const navigation = [
@@ -32,6 +36,7 @@ export default function MainAdmin(props) {
     const dispatch = useDispatch()
     const navigate = useNavigate()
  //   const token = useSelector((state) => state.usuario.value.token)
+    const stats = useSelector((state) => state.traerstats)
     const handleOnClickNavigation = (e) => {
         e.preventDefault()
         setDisplay(e.target.value)
@@ -44,8 +49,16 @@ export default function MainAdmin(props) {
     }
 
 
+    useEffect(() => {
+        return () => {
+            dispatch(bringUsers())
+        };
+    }, );
+
+
     return (
         <>
+
             <div className="min-h-full">
                 <Popover as="header" className="bg-congresogrisfuerte pb-24">
                     {({ open }) => (
@@ -260,7 +273,7 @@ export default function MainAdmin(props) {
                                     </h2>
                                     <div className="overflow-hidden rounded-lg bg-white shadow">
                                         <div className="p-6">{
-                                            //AQUI VA EL CONTENIDO
+                                            <AdminStats stats={stats} />
                                         }</div>
                                     </div>
                                 </section>

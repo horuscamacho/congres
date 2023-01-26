@@ -12,12 +12,6 @@ export default function ModalConfirmation(props) {
     const{title,text, openModal, setOpenModal, values,  submit } = props
     const [open, setOpen] = useState(openModal)
 
-
-
-    console.log(values)
-
-
-
     const cancelButtonRef = useRef(null)
 
     useEffect(() => {

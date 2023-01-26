@@ -1,6 +1,6 @@
 import ModalConfirmation from "../Modals/ModalConfirmation";
 import {useState} from "react";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useFormik} from "formik";
 import {crearNormaControl} from "./schemas/norma";
 import {createRule} from "../../features/normas/crearNormaSlice";
@@ -100,6 +100,7 @@ export default function FormNewRule() {
                     <button
                         type="submit"
                         onClick={(e) => handleOnClick(e)}
+                        disabled={errors.name || errors.publicacion || !values.name || !values.publicacion ? true : false }
                         className="ml-3 inline-flex justify-center rounded-md border border-transparent bg-congresoGrisFuerte py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-congresgrissoft hover:text-congresoGrisFuerte focus:outline-none focus:ring-2 focus:ring-congresogold focus:ring-offset-2"
                     >
                         Crear norma

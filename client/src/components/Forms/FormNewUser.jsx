@@ -1,15 +1,50 @@
 import ModalConfirmation from "../Modals/ModalConfirmation";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useFormik} from 'formik'
 import {crearUsuarioValidacion} from "./schemas/usuario";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {createUser} from '../../features/usuarios/createUsuarioSlice'
+import Succesfull from "../Alerts/Succesfull";
+import Unsuccessfull from "../Alerts/Unsuccessfull"
 
 export default function FormNewUser() {
     const dispatch = useDispatch()
     const [openModal, setOpenModal] = useState(false);
+    const [alert, setAlert] = useState(false);
+    const [success, setSuccess] = useState(false);
+    const createUserState = useSelector((state) => state.crearUsuario)
+    const usuario = useSelector((state) => state.usuario)
+    const id = usuario.value ? usuario.value.token : null
+    const usuarioCreado = createUserState.value ? createUserState.value : null
     const text = "Estás a punto de crear un nuevo usuario, si revisaste correctamente los campos presiona Crear usuario de lo contrario Cancela e inténtalo nuevamente"
     const title = "Crear usuario"
+
+    const closeAlert = () => {
+        setTimeout(()=> {
+            setAlert(false)
+        }, 3500)
+    }
+
+    const alertMessage = alert && success ? <Succesfull text={usuarioCreado.message} setAlert={setAlert} closeAlert={closeAlert}/>  :  alert && !success ? <Unsuccessfull text={usuarioCreado.message} setAlert={setAlert} closeAlert={closeAlert} /> : null
+
+        useEffect(() => {
+
+    }, [alert]);
+
+
+
+
+    useEffect(() => {
+        if(usuarioCreado && usuarioCreado.success){
+            setAlert(true)
+            setSuccess(true)
+        } else if(usuarioCreado && !usuarioCreado.success){
+            setAlert(true)
+            setSuccess(false)
+        }
+    }, [setAlert, setSuccess, usuarioCreado]);
+
+
 
     const handleOnClick = (e) => {
         e.preventDefault()
@@ -39,11 +74,12 @@ export default function FormNewUser() {
         <form className="space-y-8 divide-y divide-gray-200 px-10 mb-20 "
         onSubmit={handleSubmit}
         >
+            {alertMessage}
             <div className="space-y-8 divide-y divide-gray-200 sm:space-y-5">
                 <div className="space-y-6 sm:space-y-5">
                     <h3 className="text-xl font-bold font-medium leading-6 text-congresoGrisFuerte">Crear un nuevo usuario</h3>
                     <p className="mt-1  text-sm text-gray-500">
-                        La contraseña por default será 123456, una vez que inicie sesión el nuevo usuario, será necesario que establezca una nueva contraseña..
+                        La contraseña por default será <span className="font-extrabold">"123456"</span>, una vez que inicie sesión el nuevo usuario, será necesario que establezca una nueva contraseña..
                     </p>
                     <div className="space-y-6 sm:space-y-5">
 

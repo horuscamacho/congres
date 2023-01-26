@@ -4,40 +4,36 @@ import axios from 'axios'
 //const url = 'https://gorgeous-tan-earmuffs.cyclic.app/allcodes'
 const local = 'http://localhost:3001'
 
-
-export const createRule = createAsyncThunk(
-    'crearNorma/createRule',
+export const getStats = createAsyncThunk(
+    'taerstats/getStats',
     async (data) => {
-        console.log(data)
         try{
-            const response = await axios.post(`${local}/crearnorma`, data)
+            const response = await axios.get(`${local}/getAllStats`)
             return response.data
-        }catch (e) {
+        } catch (e) {
             return e.message
         }
     }
 )
 
-
 const initialState = {
-    crearNorma: [],
+    traerstats: [],
     status: 'idle',
     error: null
 }
 
-
-export const crearNormaSlice = createSlice({
-    name: "crearNorma",
+export const traerEstadisticas = createSlice({
+    name: "traerstats",
     initialState,
     reducers: {
 
     },
     extraReducers: (builder) => {
-        builder.addCase(createRule.fulfilled, (state, action) => {
+        builder.addCase(getStats.fulfilled, (state, action)=> {
             state.value = action.payload
         })
     }
 })
 
 
-export default crearNormaSlice.reducer
+export default traerEstadisticas.reducer

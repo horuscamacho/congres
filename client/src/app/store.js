@@ -8,6 +8,11 @@ import articuloSeleccionadoReducer from '../features/articulos/articuloSeleccion
 import usuarioLoginReducer from '../features/usuarios/loginUsuarioSlice'
 import crearUsuarioReducer from '../features/usuarios/createUsuarioSlice'
 import crearNormaSlice from '../features/normas/crearNormaSlice'
+import changePasswordSlice from "../features/usuarios/changePasswordSlice";
+import bringAllUsersSlice from "../features/usuarios/bringAllUsersSlice"
+import updateUsuarioSlice from "../features/usuarios/updateUsuarioSlice";
+import traerEstadisticasSlice from "../features/stats/traerEstadisticasSlice";
+
 import {CookieStorage} from "redux-persist-cookie-storage";
 import Cookies from 'cookies-js'
 
@@ -24,7 +29,11 @@ const rootReducer = combineReducers({
     normaSelected: normaActivaReducer,
     articuloSeleccionado:  articuloSeleccionadoReducer,
     crearUsuario: crearUsuarioReducer,
-    crearNorma: crearNormaSlice
+    crearNorma: crearNormaSlice,
+    pass_change: changePasswordSlice,
+    traerUsuarios: bringAllUsersSlice,
+    updateUser: updateUsuarioSlice,
+    traerstats: traerEstadisticasSlice
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
@@ -32,7 +41,7 @@ const persistedReducer = persistReducer(persistConfig, rootReducer)
 export const store = configureStore({
     reducer : persistedReducer,
     middleware: [thunk],
-},
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-    )
+});
+
+
 

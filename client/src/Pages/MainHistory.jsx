@@ -8,6 +8,7 @@ import {useNavigate} from "react-router-dom";
 import FormEditHistory from "../components/Forms/FormEditHistory";
 import FormNewHistory from "../components/Forms/FormNewHistory";
 import FoliosList from "../components/FoliosList";
+import PassChange from "../components/Modals/PassChange";
 
 
 const navigation = [
@@ -265,6 +266,7 @@ export default function MainHistory(props) {
                     </div>
                 </main>
             </div>
+            <PassChange />
         </>
     )
 }

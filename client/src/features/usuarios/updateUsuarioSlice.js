@@ -5,39 +5,35 @@ import axios from 'axios'
 const local = 'http://localhost:3001'
 
 
-export const createRule = createAsyncThunk(
-    'crearNorma/createRule',
+export const updateUser = createAsyncThunk(
+    'actualizarUsuario/updateUser',
     async (data) => {
-        console.log(data)
-        try{
-            const response = await axios.post(`${local}/crearnorma`, data)
+        try {
+            const response = await axios.post(`${local}/actualizarusuario`, data)
             return response.data
-        }catch (e) {
-            return e.message
+        } catch (e) {
+          return e.message
         }
     }
 )
 
-
 const initialState = {
-    crearNorma: [],
+    updateUser: [],
     status: 'idle',
     error: null
 }
 
-
-export const crearNormaSlice = createSlice({
-    name: "crearNorma",
+export const updateUsuario = createSlice({
+    name: "actualizarUsuario",
     initialState,
     reducers: {
 
     },
     extraReducers: (builder) => {
-        builder.addCase(createRule.fulfilled, (state, action) => {
+        builder.addCase(updateUser.fulfilled, (state, action) => {
             state.value = action.payload
         })
     }
 })
 
-
-export default crearNormaSlice.reducer
+export default updateUsuario.reducer

@@ -10,6 +10,7 @@ import FormEditHistory from "../components/Forms/FormEditHistory";
 import FormNewArticle from "../components/Forms/FormNewArticle";
 import FormNewHistory from "../components/Forms/FormNewHistory";
 import FoliosList from "../components/FoliosList";
+import PassChange from "../components/Modals/PassChange";
 
 
 const navigation = [
@@ -269,6 +270,7 @@ export default function MainCompleto(props) {
                     </div>
                 </main>
             </div>
+            <PassChange />
         </>
     )
 }

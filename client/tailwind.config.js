@@ -9,6 +9,8 @@ module.exports = {
       colors: {
         'congresogold': '#d4a000',
         'congresoGrisFuerte': "#646567",
+        'doradoclaro': "#F5E29B",
+        "doradooscuro": "#D1B06D",
         'congresogrisfuerte': '#cfcfcf',
         'congresgrissoft': '#e6e6e6',
         sky: colors.sky,
