@@ -9,12 +9,9 @@ export default function AdminStats() {
     const estadisticas = useSelector((state) => state.traerstats)
 
 
-
     useEffect(() => {
-
         dispatch(getStats())
-
-    },);
+    }, []);
 
 
 
