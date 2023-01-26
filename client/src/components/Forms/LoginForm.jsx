@@ -2,7 +2,7 @@ import logo from '../../assets/SELLO_LXV.png'
 import {useFormik} from 'formik'
 import {loginSchema} from "./schemas/usuario";
 import {intentarLog} from "../../features/usuarios/loginUsuarioSlice";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 export default function LoginForm() {
     const navigate = useNavigate()
@@ -10,7 +10,7 @@ export default function LoginForm() {
     const onSubmit = (values, actions) => {
         dispatch(intentarLog(values))
         actions.resetForm()
-        navigate("/home")
+    //    navigate("/home")
     }
 
     const {values, errors, handleBlur, touched, handleChange, handleSubmit} = useFormik({
@@ -21,6 +21,12 @@ export default function LoginForm() {
         validationSchema: loginSchema,
         onSubmit
     })
+
+
+
+
+
+
 
 
 

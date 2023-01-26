@@ -140,6 +140,9 @@ export default function FormEditUser() {
                 <div className="space-y-6 pt-8 sm:space-y-5 sm:pt-10">
                     <div>
                         <h3 className="text-xl font-bold font-medium leading-6 text-congresoGrisFuerte">Información nueva del Usuario</h3>
+                        <p className="mt-1  text-sm text-gray-500">
+                            Solo se modificaran los campos que se llenen en el siguiente formulario.
+                        </p>
                     </div>
                     <div className="space-y-6 sm:space-y-5">
                         <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">

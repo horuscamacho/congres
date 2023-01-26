@@ -42,10 +42,15 @@ export default function MainAdmin(props) {
         setDisplay(e.target.value)
     }
 
+    const navigateLog = () => {
+        setTimeout(() => {
+            navigate('/')
+        }, 800)
+    }
     const handleCloseSession = (e) => {
         e.preventDefault()
         dispatch(clearStore())
-        navigate('/')
+        navigateLog()
     }
 
 

@@ -1,26 +1,53 @@
 import ModalConfirmation from "../Modals/ModalConfirmation";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useFormik} from "formik";
 import {crearNormaControl} from "./schemas/norma";
 import {createRule} from "../../features/normas/crearNormaSlice";
+import Succesfull from "../Alerts/Succesfull";
+import Unsuccessfull from "../Alerts/Unsuccessfull";
+
 
 
 export default function FormNewRule() {
+    const normaCreada = useSelector((state) => state.crearNorma)
+    const norma = normaCreada.value ? normaCreada.value : null
     const dispatch = useDispatch()
     const [openModal, setOpenModal] = useState(false);
+    const [alert, setAlert] = useState(false);
+    const [success, setSuccess] = useState(false);
 
+
+    const closeAlert = () => {
+        setTimeout(()=> {
+            setAlert(false)
+        }, 3500)
+    }
+
+    const alertMessage = alert && success ? <Succesfull text={norma.message} setAlert={setAlert} closeAlert={closeAlert}/>  :  alert && !success ? <Unsuccessfull text={norma.message} setAlert={setAlert} closeAlert={closeAlert} /> : null
 
     const submitNewRule = () => {
         dispatch(createRule(values))
         setOpenModal(false)
         resetForm()
+        setAlert(true)
     }
 
     const handleOnClick = (e) => {
         e.preventDefault()
         setOpenModal(true)
     }
+
+
+    useEffect(() => {
+        if(norma && norma.success){
+            setAlert(true)
+            setSuccess(true)
+        } else if(norma && !norma.success){
+            setAlert(true)
+            setSuccess(false)
+        }
+    }, [setAlert, setSuccess, normaCreada]);
 
     const text = "Estás a punto de crear una nueva norma, si revisaste correctamente el nombre presiona Crear Norma, de lo contrario haz click en cancelar"
     const title = "Crear norma"
@@ -42,6 +69,7 @@ export default function FormNewRule() {
         <form className="space-y-8 divide-y divide-gray-200"
               onSubmit={handleSubmit}
         >
+            {alertMessage}
             <div className="space-y-8 divide-y divide-gray-200 sm:space-y-5">
                 <div className="space-y-6 sm:space-y-5">
                     <div>

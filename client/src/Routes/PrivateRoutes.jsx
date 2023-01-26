@@ -7,12 +7,6 @@ import MainHistory from "../Pages/MainHistory";
 import Loader from "../components/loader/Loader";
 
 
-
-
-
-
-
-
 function PrivateRoutes() {
     const [logged, setLogged] = useState(true);
 
@@ -21,7 +15,7 @@ function PrivateRoutes() {
 
     useEffect(() => {
         isLogged()
-    }, []);
+    }, [usuario]);
 
 
     const isLogged = () => {
@@ -32,8 +26,6 @@ function PrivateRoutes() {
         }, 2000)
     }
 
-    console.log(logged)
-    console.log(usuario)
 
     return (
         <>

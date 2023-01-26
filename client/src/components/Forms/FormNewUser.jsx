@@ -27,7 +27,7 @@ export default function FormNewUser() {
 
     const alertMessage = alert && success ? <Succesfull text={usuarioCreado.message} setAlert={setAlert} closeAlert={closeAlert}/>  :  alert && !success ? <Unsuccessfull text={usuarioCreado.message} setAlert={setAlert} closeAlert={closeAlert} /> : null
 
-        useEffect(() => {
+    useEffect(() => {
 
     }, [alert]);
 
