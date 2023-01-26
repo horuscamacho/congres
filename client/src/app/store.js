@@ -1,4 +1,4 @@
-import {combineReducers, configureStore} from '@reduxjs/toolkit'
+import {combineReducers, configureStore, createStore} from '@reduxjs/toolkit'
 import {persistReducer} from 'redux-persist'
 import thunk from "redux-thunk";
 import articulosReducer from '../features/articulos/traerArticulosSlice'
@@ -38,6 +38,7 @@ const rootReducer = combineReducers({
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
+
 
 export const store = configureStore({
     reducer : persistedReducer,
