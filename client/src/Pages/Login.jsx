@@ -15,18 +15,12 @@ function Login(props) {
     console.log(logged)
 
 
-    const setDelay = () => {
-        setTimeout(() => {
-            dispatch(clearStore())
-        }, 5000)
-    }
 
     useEffect(() => {
         if(loggSuccess?.status === 200){
             navigate('/home')
         } else if(loggSuccess?.status) {
             setOpen(true)
-            setDelay()
         }
     }, [loggSuccess]);
 
