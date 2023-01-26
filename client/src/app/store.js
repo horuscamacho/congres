@@ -20,6 +20,7 @@ const persistConfig = {
     key: 'root',
     storage: new CookieStorage(Cookies, {}),
     whitelist: ['titulos_normas', 'usuario'],
+    timeout: null
 }
 
 const rootReducer = combineReducers({
