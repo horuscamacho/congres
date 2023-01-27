@@ -42,7 +42,11 @@ const persistedReducer = persistReducer(persistConfig, rootReducer)
 
 export const store = configureStore({
     reducer : persistedReducer,
-    middleware: [thunk],
+    middleware: getDefaultMiddleware => getDefaultMiddleware({
+        thunk: {
+            extraArgument: ""
+        }
+    })
 });
 
 
