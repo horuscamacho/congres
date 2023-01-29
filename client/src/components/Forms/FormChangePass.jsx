@@ -16,11 +16,12 @@ export default function FormChangePass() {
         validationSchema: updatePass
     })
 
-    console.log(errors)
-    console.log(values)
+
     const handleSubmitt = (e) => {
         e.preventDefault()
-        dispatch(passChange({token: user.value.token, contrasena: values.contrsena}))
+        const token = user.value.token
+        const objt ={...values, token}
+        dispatch(passChange(objt))
     }
 
     const notValidated = "block w-full appearance-none rounded-md border border-red-900 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-black focus:outline-none focus:ring-black sm:text-sm"

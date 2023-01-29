@@ -24,7 +24,7 @@ export default function FormNewRule() {
         }, 3500)
     }
 
-    const alertMessage = alert && success ? <Succesfull text={norma.message} setAlert={setAlert} closeAlert={closeAlert}/>  :  alert && !success ? <Unsuccessfull text={norma.message} setAlert={setAlert} closeAlert={closeAlert} /> : null
+    const alertMessage = alert && success && norma ? <Succesfull text={norma?.message} setAlert={setAlert} closeAlert={closeAlert}/>  :  alert && !success && norma ? <Unsuccessfull text={norma.message} setAlert={setAlert} closeAlert={closeAlert} /> : null
 
     const submitNewRule = () => {
         dispatch(createRule(values))

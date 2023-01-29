@@ -12,6 +12,7 @@ import changePasswordSlice from "../features/usuarios/changePasswordSlice";
 import bringAllUsersSlice from "../features/usuarios/bringAllUsersSlice"
 import updateUsuarioSlice from "../features/usuarios/updateUsuarioSlice";
 import traerEstadisticasSlice from "../features/stats/traerEstadisticasSlice";
+import createArticleReducer from '../features/articulos/createArticleSlice'
 
 import {CookieStorage} from "redux-persist-cookie-storage";
 import Cookies from 'cookies-js'
@@ -34,7 +35,8 @@ const rootReducer = combineReducers({
     pass_change: changePasswordSlice,
     traerUsuarios: bringAllUsersSlice,
     updateUser: updateUsuarioSlice,
-    traerstats: traerEstadisticasSlice
+    traerstats: traerEstadisticasSlice,
+    newArticle: createArticleReducer,
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
@@ -42,11 +44,7 @@ const persistedReducer = persistReducer(persistConfig, rootReducer)
 
 export const store = configureStore({
     reducer : persistedReducer,
-    middleware: getDefaultMiddleware => getDefaultMiddleware({
-        thunk: {
-            extraArgument: ""
-        }
-    })
+    middleware: [thunk],
 });
 
 

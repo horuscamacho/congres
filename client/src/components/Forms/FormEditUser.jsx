@@ -1,8 +1,13 @@
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useState} from "react";
 import Succesfull from "../Alerts/Succesfull";
+import {updateDataUser} from "./schemas/usuario";
+import {useFormik} from "formik";
+import {updateUser} from "../../features/usuarios/updateUsuarioSlice";
+
 
 export default function FormEditUser() {
+    const dispatch = useDispatch()
     const dataUsers = useSelector((state) => state.traerUsuarios)
     const usuarios = dataUsers.value ? dataUsers.value : null
     const [selected, setSelected] = useState(null);
@@ -19,13 +24,28 @@ export default function FormEditUser() {
     }
 
 
+    const {values, errors, touched, handleChange, handleSubmit, handleBlur, resetForm} = useFormik({
+        initialValues: {
+            nombre: "",
+            apellido: "",
+            permisos: "",
+            estatus: "",
+        },
+        validationSchema: updateDataUser
+    })
 
 
 
     const blocked = "block w-full appearance-none rounded-md border border-black px-3 py-2 placeholder-gray-300 bg-gray-200 shadow-sm focus:border-black focus:outline-none focus:ring-black sm:text-sm"
     const validated = "block w-full fill-none appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-black focus:outline-none focus:ring-black sm:text-sm"
 
-
+    console.log(selected)
+    const handleOnSubmit = (e) => {
+        e.preventDefault()
+        setAlert(true)
+        const obj = {...values, usuario: selected}
+        dispatch(updateUser(obj))
+    }
 
 
     return (
@@ -154,6 +174,9 @@ export default function FormEditUser() {
                                     type="text"
                                     name="nombre"
                                     id="nombre"
+                                    value={values.nombre}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
                                     className={validated}
                                 />
                             </div>
@@ -168,6 +191,9 @@ export default function FormEditUser() {
                                     type="text"
                                     name="apellido"
                                     id="apellido"
+                                    value={values.apellido}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
                                     className={validated}
                                 />
                             </div>
@@ -181,6 +207,9 @@ export default function FormEditUser() {
                                 <select
                                     id="permisos"
                                     name="permisos"
+                                    value={values.permisos}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
                                     className={validated}
                                 >
                                     <option></option>
@@ -199,6 +228,9 @@ export default function FormEditUser() {
                                 <select
                                     id="estatus"
                                     name="estatus"
+                                    value={values.estatus}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
                                     className={validated}
                                 >
                                     <option></option>
@@ -221,11 +253,7 @@ export default function FormEditUser() {
                     <button
                         type="submit"
                         className="ml-3 inline-flex justify-center rounded-md border border-transparent bg-congresoGrisFuerte py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-congresgrissoft hover:text-congresoGrisFuerte focus:outline-none focus:ring-2 focus:ring-congresogold focus:ring-offset-2"
-                        onClick={(e) => {
-                         e.preventDefault()
-                            setAlert(true)
-                        }
-                        }
+                        onClick={(e) => handleOnSubmit(e)}
                     >
                         Actualizar cambios
                     </button>

@@ -9,8 +9,8 @@ export const updateUser = createAsyncThunk(
     'actualizarUsuario/updateUser',
     async (data) => {
         try {
-            const response = await axios.post(`${local}/actualizarusuario`, data)
-            return response.data
+          const response = await axios.post(`${local}/edituser`, data)
+          return response.data
         } catch (e) {
           return e.message
         }

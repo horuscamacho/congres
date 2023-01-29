@@ -1,9 +1,9 @@
 import logo from '../assets/logo.png'
-import {Fragment,  useState} from 'react'
+import {Fragment, useEffect, useState} from 'react'
 import { Menu, Popover, Transition } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import {clearStore} from "../features/usuarios/loginUsuarioSlice";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import FormEditArticle from "../components/Forms/FormEditArticle";
 import FormEditHistory from "../components/Forms/FormEditHistory";
@@ -11,13 +11,14 @@ import FormNewArticle from "../components/Forms/FormNewArticle";
 import FormNewHistory from "../components/Forms/FormNewHistory";
 import FoliosList from "../components/FoliosList";
 import PassChange from "../components/Modals/PassChange";
+import {titulosNormas} from "../features/normas/traerNormasSlice";
 
 
 const navigation = [
-    { name: 'Modificar Artículo',  value: "modifArt" },
-    { name: 'Modificar Histórico',  value: "modifHist" },
     { name: 'Crear Artículo',  value: "createArt" },
     { name: 'Crear Histórico', value: "createHist" },
+    { name: 'Modificar Artículo',  value: "modifArt" },
+    { name: 'Modificar Histórico',  value: "modifHist" },
     { name: 'Folios', value: "invoice" },
 ]
 const userNavigation = [
@@ -29,10 +30,11 @@ function classNames(...classes) {
 }
 
 export default function MainCompleto(props) {
+    const normas = useSelector((state) => state.titulos_normas)
     const [display, setDisplay] = useState('modifArt');
     const dispatch = useDispatch()
     const navigate = useNavigate()
-   // const token = useSelector((state) => state.usuario.value.token)
+
     const handleOnClickNavigation = (e) => {
         e.preventDefault()
         setDisplay(e.target.value)
@@ -43,6 +45,10 @@ export default function MainCompleto(props) {
         dispatch(clearStore())
         navigate('/')
     }
+
+    useEffect(() => {
+        dispatch(titulosNormas())
+    }, []);
 
 
     return (
@@ -247,7 +253,7 @@ export default function MainCompleto(props) {
                                     </h2>
                                     <div className="overflow-hidden rounded-lg bg-white shadow">
                                         <div className="p-6">{
-                                            display === "modifArt" ? <FormEditArticle /> : display === "modifHist" ? <FormEditHistory /> : display === "createArt" ? <FormNewArticle /> : display === "createHist" ? <FormNewHistory /> : display === "invoice" ? <FoliosList /> : null
+                                            display === "modifArt" ? <FormEditArticle /> : display === "modifHist" ? <FormEditHistory /> : display === "createArt" ? <FormNewArticle normas={normas} /> : display === "createHist" ? <FormNewHistory /> : display === "invoice" ? <FoliosList /> : null
                                         }</div>
                                     </div>
                                 </section>
