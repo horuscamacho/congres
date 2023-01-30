@@ -2,9 +2,35 @@
 
 
 
-export default function FormEditArticle() {
-   // const normas = useSelector((state) => state.titulos_normas.value)
+import {useDispatch, useSelector} from "react-redux";
+import {useEffect, useState} from "react";
+import {traerArticulos} from "../../features/articulos/traerArticulosSlice";
 
+export default function FormEditArticle(props) {
+    const dispatch = useDispatch()
+    const [normaSelected, setNormaSelected] = useState(null);
+    const normas = useSelector((state) => state.titulos_normas.value)
+    const allArticles = useSelector((state) => state.articulos)
+    const listaDeArticulos = allArticles.value ? allArticles.value : null
+    const handleOnChange = (e) => {
+        setNormaSelected(e.target.value)
+    }
+
+    console.log(normaSelected)
+
+    useEffect(() => {
+        if(normaSelected){
+            const info = {
+                norma: normaSelected
+            }
+            const articulos = dispatch(traerArticulos(info))
+        }
+
+    }, [normaSelected]);
+
+    console.log(normaSelected)
+
+    console.log(allArticles)
 
     return (
         <form className="space-y-8 divide-y divide-gray-200">
@@ -27,10 +53,10 @@ export default function FormEditArticle() {
                                     id="norma"
                                     name="norma"
                                     className="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-congresogold focus:ring-congresogold sm:max-w-xs sm:text-sm"
+                                    onChange={(e) => handleOnChange(e)}
                                 >
-                                    <option>United States</option>
-                                    <option>Canada</option>
-                                    <option>Mexico</option>
+                                    <option></option>
+                                    {normas.map((el) => <option key={el.id} value={el.id} >{el.name}</option>)}
                                 </select>
                             </div>
                         </div>
@@ -45,9 +71,7 @@ export default function FormEditArticle() {
                                     name="articulo"
                                     className="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-congresogold focus:ring-congresogold sm:max-w-xs sm:text-sm"
                                 >
-                                    <option>United States</option>
-                                    <option>Canada</option>
-                                    <option>Mexico</option>
+                                    {listaDeArticulos && normaSelected ? listaDeArticulos.map((el) => <option key={el.id} value={el.id}>{el.articulo}</option>) : <option></option>}
                                 </select>
                             </div>
                         </div>

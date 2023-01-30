@@ -6,8 +6,9 @@ const local = 'http://localhost:3001'
 export const traerArticulos = createAsyncThunk(
     'articulos/traerArticulos',
     async (data) => {
+        console.log(data)
     try {
-        const response = await axios.get(`${local}/articulosnorma/${data}`)
+        const response = await axios.get(`${local}/articulosnorma/${data.norma}`)
         return response.data
     } catch (e) {
         return e.message

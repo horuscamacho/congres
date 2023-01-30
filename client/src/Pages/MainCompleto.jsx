@@ -31,7 +31,7 @@ function classNames(...classes) {
 
 export default function MainCompleto(props) {
     const normas = useSelector((state) => state.titulos_normas)
-    const [display, setDisplay] = useState('modifArt');
+    const [display, setDisplay] = useState('createArt');
     const dispatch = useDispatch()
     const navigate = useNavigate()
 

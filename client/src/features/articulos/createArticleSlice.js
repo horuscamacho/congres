@@ -8,9 +8,10 @@ const local = 'http://localhost:3001'
 export const createArt = createAsyncThunk(
     'newArticle/createArt',
     async (data) => {
+        console.log("Esto llega al slice ", data)
         try{
             const {token} = data
-          const response = await axios.post(`${local}/newarticle`, data,
+            const response = await axios.post(`${local}/creararticulo`, data,
               {
                   headers: {
                       'authorization': token

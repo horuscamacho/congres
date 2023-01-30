@@ -108,7 +108,7 @@ export default function FormNewRule() {
                             <div className="mt-1 sm:col-span-2 sm:mt-0">
                                 <div className="flex max-w-lg rounded-md shadow-sm">
                                     <input
-                                        type="text"
+                                        type="date"
                                         name="publicacion"
                                         id="publicacion"
                                         value={values.publicacion}
